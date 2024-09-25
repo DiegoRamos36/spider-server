@@ -7,7 +7,7 @@ generator client {
 
 datasource db {
   provider = "sqlite"
-  url      = env("DATABASE_URL")
+  url      = "file:./dev.db"
 }
 
 model User {
@@ -15,14 +15,16 @@ model User {
   username          String  @unique
   password          String
   email             String  @unique
-  pedidos           Int     @default(0)
+  NdePedidos Int @default(0)
+  pedidos           String    @default("")
   cargo             String  @default("cliente")
   carteira          String?
   endereco          String?
   numero            Int?
   complemento       String?
   pontoDeReferencia String? @map("ponto_de_referencia")
-
+  cupons Cupom[]
+  
   @@map("usuarios")
 }
 
@@ -35,4 +37,15 @@ model Item {
   preco      Float
   quantidade Int?
   slug       String  @unique
+}
+
+model Cupom {
+  id               Int      @id @default(autoincrement())
+  codigo           String 
+  quantidade       Int
+  dataExpedicao    DateTime @default(now())
+  userId           Int
+  user             User     @relation(fields: [userId], references: [id])
+
+  @@map("cupons")
 }

@@ -1,9 +1,10 @@
-POST http://localhost:8081/register
+POST http://localhost:8081/novo-cupom
 Content-Type: application/json
 
 {
-  "username" : "diegotesterserver",
-  "email" : "diegoteste@tester.com",
-  "password" : "12345678910"
+  "codigo" : "PRISMATESTER19",
+  "quantidade" : 1,
+  "dataExpedicao": "2025-09-30T00:00:00.000Z",
+  "userId" : 7
 }
 
