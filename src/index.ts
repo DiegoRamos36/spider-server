@@ -8,9 +8,8 @@ import fastifyJwt from '@fastify/jwt';
 import dotenv from 'dotenv';
 import { orderRoutes } from './routes/orderRoutes';
 import { addressRoutes } from './routes/addressRoutes';
-
 dotenv.config();
-
+const port = process.env.PORT || 4000;
 const app = fastify();
 app.register(fastifyJwt, {
   secret: process.env.JWT_KEY || '',
@@ -22,6 +21,6 @@ app.register(orderRoutes);
 app.register(addressRoutes);
 app.register(fastifyCors, authCors);
 
-app.listen({ port: 8081 }).then(() => {
-  console.log('Servidor rodando na porta 8081');
+app.listen(port, '0.0.0.0', () => {
+  console.log(`Servidor rodando na porta ${port}`);
 });
