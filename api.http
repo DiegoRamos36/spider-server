@@ -1,10 +1,9 @@
-POST http://localhost:8081/novo-cupom
+POST http://localhost:8081/get-default-address
 Content-Type: application/json
 
 {
-  "codigo" : "PRISMATESTER19",
-  "quantidade" : 1,
-  "dataExpedicao": "2025-09-30T00:00:00.000Z",
-  "userId" : 7
+
+  "userId" : 1
+
 }
 

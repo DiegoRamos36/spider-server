@@ -11,41 +11,75 @@ datasource db {
 }
 
 model User {
-  id                Int     @id @default(autoincrement())
-  username          String  @unique
+  id                Int      @id @default(autoincrement())
+  username          String   @unique
   password          String
-  email             String  @unique
-  NdePedidos Int @default(0)
-  pedidos           String    @default("")
-  cargo             String  @default("cliente")
+  email             String   @unique
+  NdePedidos        Int      @default(0)
+  pedidos           Pedido[]
+  cargo             String   @default("cliente")
   carteira          String?
-  endereco          String?
+  enderecos          Enderecos[]
   numero            Int?
   complemento       String?
-  pontoDeReferencia String? @map("ponto_de_referencia")
-  cupons Cupom[]
-  
+  pontoDeReferencia String?  @map("ponto_de_referencia")
+  cupons            Cupom[]
+
   @@map("usuarios")
 }
 
-model Item {
-  id         Int     @id @default(autoincrement())
-  nome       String  @unique
-  imgSrc     String  @default("")
-  imgAlt     String  @default("")
-  desc       String?
-  preco      Float
-  quantidade Int?
-  slug       String  @unique
+model Pedido {
+  id            Int             @id @default(autoincrement())
+  sessionId     String
+  amountTotal   Int
+  currency      String
+  coupon        String?
+  createdAt     DateTime        @default(now())
+  produtos      PedidoProduto[] @relation("PedidoProdutos") // Relação com PedidoProduto
+  User          User?           @relation(fields: [userId], references: [id])
+  userId        Int?
+}
+
+model Produto {
+  id        Int             @id @default(autoincrement())
+  name      String
+  desc String @default("")
+  price     Float
+  imgSrc    String
+  imgAlt    String
+  createdAt DateTime        @default(now())
+  pedidos   PedidoProduto[] @relation("ProdutoPedidos") // Relação com PedidoProduto
+}
+
+model PedidoProduto {
+  id        Int @id @default(autoincrement())
+  pedidoId  Int
+  produtoId Int
+  quantity  Int
+
+  pedido  Pedido  @relation("PedidoProdutos", fields: [pedidoId], references: [id])
+  produto Produto @relation("ProdutoPedidos", fields: [produtoId], references: [id])
 }
 
 model Cupom {
-  id               Int      @id @default(autoincrement())
-  codigo           String 
-  quantidade       Int
-  dataExpedicao    DateTime @default(now())
-  userId           Int
-  user             User     @relation(fields: [userId], references: [id])
+  id            Int      @id @default(autoincrement())
+  codigo        String
+  quantidade    Int
+  dataExpedicao DateTime @default(now())
+  userId        Int
+  user          User     @relation(fields: [userId], references: [id])
 
   @@map("cupons")
+}
+
+model Enderecos {
+  id Int @id @default(autoincrement())
+  nome String
+  address String
+  bairro String
+  numero String
+  reference String
+  userId Int
+  padrao Boolean @default(false)
+    user      User @relation(fields: [userId], references: [id])
 }
