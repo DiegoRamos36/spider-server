@@ -8,6 +8,7 @@ import fastifyJwt from '@fastify/jwt';
 import dotenv from 'dotenv';
 import { orderRoutes } from './routes/orderRoutes';
 import { addressRoutes } from './routes/addressRoutes';
+
 dotenv.config();
 const port = process.env.PORT || 4000;
 const app = fastify();

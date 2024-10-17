@@ -74,3 +74,35 @@ export const autenticateUser = async (
 
   return res.send(token);
 };
+export const autenticateUserFromGoogle = async (
+  req: FastifyRequest,
+  res: FastifyReply,
+) => {
+  const autenticateUserSchema = userSchema.pick({
+    email: true,
+  });
+
+  const validacao = autenticateUserSchema.safeParse(req.body);
+
+  if (!validacao.success) {
+    return res.status(400).send({ error: validacao.error.errors });
+  }
+
+  const { email } = validacao.data;
+  const user = await prisma.user.findUnique({
+    where: { email },
+  });
+
+  if (!user) {
+    return res.status(400).send({ error: 'Email ou senha inválido' });
+  }
+
+  const token = await res.jwtSign({
+    id: user.id,
+    email: user.email,
+    name: user.username,
+  });
+  if (!token) return res.status(400).send('Erro na geração do token');
+
+  return res.send(token);
+};
