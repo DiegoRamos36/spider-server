@@ -7,7 +7,6 @@ export const userSchema = z.object({
   email: z.string().email(),
   NdePedidos: z.number().int().nonnegative().default(0),
   pedidos: z.string().default(''),
-  cargo: z.string().default('cliente'),
   carteira: z.string().optional(),
   endereco: z.string().optional(),
   numero: z.number().int().optional(),

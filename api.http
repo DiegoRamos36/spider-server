@@ -1,2 +1,12 @@
-GET http://localhost:4000/pedidos
+POST https://spider-server-m6m6.onrender.com/registrar-funcionario
+Content-Type: 'application/json
+
+{
+  "nome" : "Diego Ferreira",
+  "username" : "diegoferreira",
+  "password" : "9353069",
+  "endereco" : "Av. Joaquim da Costa Lima",
+  "cargo" : "Administrador"
+}
+
 
