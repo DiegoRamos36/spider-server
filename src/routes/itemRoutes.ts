@@ -1,7 +1,7 @@
 import { FastifyInstance, FastifyPluginCallback } from 'fastify';
 import {
-  deleteById,
-  editById,
+  deleteItemById,
+  editItemById,
   getAllItems,
   getItemByName,
   newItem,
@@ -11,7 +11,7 @@ export const ItemRoutes: FastifyPluginCallback = (app, options, done) => {
   app.post('/novo-item', newItem);
   app.get('/obter-item', getAllItems);
   app.post('/obter-item-name', getItemByName);
-  app.post('/delete-item', deleteById);
-  app.post('/edit-item', editById);
+  app.post('/delete-item', deleteItemById);
+  app.post('/edit-item', editItemById);
   done();
 };

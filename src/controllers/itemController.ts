@@ -49,7 +49,10 @@ export const getItemByName = async (req: FastifyRequest, res: FastifyReply) => {
 };
 
 // excluir item por id
-export const deleteById = async (req: FastifyRequest, res: FastifyReply) => {
+export const deleteItemById = async (
+  req: FastifyRequest,
+  res: FastifyReply,
+) => {
   const { id } = req.body as { id: string };
   const deletarItem = await prisma.produto.delete({
     where: {
@@ -59,7 +62,7 @@ export const deleteById = async (req: FastifyRequest, res: FastifyReply) => {
 };
 
 // editar item
-export const editById = async (req: FastifyRequest, res: FastifyReply) => {
+export const editItemById = async (req: FastifyRequest, res: FastifyReply) => {
   const { id } = req.params as { id: string };
   const { name, desc, price } = req.body as {
     name: string;

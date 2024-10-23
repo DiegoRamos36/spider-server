@@ -101,3 +101,19 @@ export const getOrders = async (req: FastifyRequest, res: FastifyReply) => {
 
   return res.status(200).send(pedidos);
 };
+export const getAllOrders = async (req: FastifyRequest, res: FastifyReply) => {
+  try {
+    const prismaPedidos = await prisma.pedido.findMany();
+
+    const pedidos = prismaPedidos.map((pedido) => ({
+      amount_total: pedido.amountTotal,
+      created_at: pedido.createdAt,
+    }));
+
+    return res.status(200).send(pedidos);
+  } catch (e) {
+    return res
+      .status(404)
+      .send({ error: e instanceof Error ? e.message : 'Erro Desconhecido' });
+  }
+};

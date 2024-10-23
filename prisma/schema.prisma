@@ -17,14 +17,12 @@ model User {
   email             String   @unique
   NdePedidos        Int      @default(0)
   pedidos           Pedido[]
-  cargo             String   @default("cliente")
   carteira          String?
   enderecos          Enderecos[]
   numero            Int?
   complemento       String?
   pontoDeReferencia String?  @map("ponto_de_referencia")
   cupons            Cupom[]
-
   @@map("usuarios")
 }
 
@@ -82,4 +80,13 @@ model Enderecos {
   userId Int
   padrao Boolean @default(false)
     user      User @relation(fields: [userId], references: [id])
+}
+
+model Funcionarios {
+  id Int @id @default(autoincrement())
+  nome String
+  username String @unique
+  password String
+  cargo String 
+  endereco String
 }
