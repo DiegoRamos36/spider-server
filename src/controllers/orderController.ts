@@ -80,7 +80,7 @@ export const createPayment = async (req: FastifyRequest, res: FastifyReply) => {
   }
 };
 
-export const getOrders = async (req: FastifyRequest, res: FastifyReply) => {
+export const getUserOrders = async (req: FastifyRequest, res: FastifyReply) => {
   const { userId } = req.body as Partial<Pedido>;
   if (!userId) {
     return res.status(400).send({ error: 'userId é necessário' });
@@ -101,6 +101,7 @@ export const getOrders = async (req: FastifyRequest, res: FastifyReply) => {
 
   return res.status(200).send(pedidos);
 };
+
 export const getAllOrders = async (req: FastifyRequest, res: FastifyReply) => {
   try {
     const prismaPedidos = await prisma.pedido.findMany();
@@ -108,6 +109,9 @@ export const getAllOrders = async (req: FastifyRequest, res: FastifyReply) => {
     const pedidos = prismaPedidos.map((pedido) => ({
       amount_total: pedido.amountTotal,
       created_at: pedido.createdAt,
+      id: pedido.id,
+      sessionId: pedido.sessionId,
+      payment_status: pedido.payment_status,
     }));
 
     return res.status(200).send(pedidos);
@@ -116,4 +120,49 @@ export const getAllOrders = async (req: FastifyRequest, res: FastifyReply) => {
       .status(404)
       .send({ error: e instanceof Error ? e.message : 'Erro Desconhecido' });
   }
+};
+
+export const setPaymentStatus = async (
+  req: FastifyRequest,
+  res: FastifyReply,
+) => {
+  const { id, status } = req.body as { id: number; status: string };
+
+  try {
+    const updatedOrder = await prisma.pedido.update({
+      where: {
+        id,
+      },
+      data: {
+        payment_status: status,
+      },
+    });
+
+    return res
+      .status(200)
+      .send({ status: updatedOrder.payment_status, id: updatedOrder.id });
+  } catch (e) {
+    return res
+      .status(404)
+      .send({ error: e instanceof Error ? e.message : 'Erro Desconhecido' });
+  }
+};
+
+export const getOrders = async (req: FastifyRequest, res: FastifyReply) => {
+  const { date } = req.body as { date: string };
+
+  const pedidos = await prisma.pedido.findMany({
+    where: {
+      createdAt: date,
+    },
+    include: {
+      produtos: {
+        include: {
+          produto: true,
+        },
+      },
+    },
+  });
+
+  return res.status(200).send(pedidos);
 };

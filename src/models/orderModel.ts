@@ -16,6 +16,7 @@ export interface Pedido {
   amountTotal: number;
   currency: string;
   coupon: string;
+  payment_status: string;
   createdAt: Date;
   products: Produto[];
 }

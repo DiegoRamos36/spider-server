@@ -31,6 +31,7 @@ model Pedido {
   sessionId     String
   amountTotal   Int
   currency      String
+  payment_status String @default("EM ANÁLISE")
   coupon        String?
   createdAt     DateTime        @default(now())
   produtos      PedidoProduto[] @relation("PedidoProdutos") // Relação com PedidoProduto
