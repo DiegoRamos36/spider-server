@@ -47,8 +47,8 @@ export const createPayment = async (req: FastifyRequest, res: FastifyReply) => {
       shipping_address_collection: {
         allowed_countries: ['BR'],
       },
-      success_url: 'https://spider-burguer.vercel.app/sucesso',
-      cancel_url: 'https://spider-burguer.vercel.app/falha',
+      success_url: 'https://spider-burguer.ramosdiego.com/sucesso',
+      cancel_url: 'https://spider-burguer.ramosdiego.com/falha',
       locale: 'pt-BR',
     });
 
