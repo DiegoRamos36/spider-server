@@ -1,9 +1,4 @@
-POST http://localhost:4000/delivery
-Content-Type: 'application/json'
-
-{
-  "date" : "2024-10-11T16:10:12.674Z"
-}
+GET http://localhost:4000/obter-item
 
 
 

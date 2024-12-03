@@ -8,11 +8,36 @@ import {
 } from '../controllers/employeesController';
 
 export const EmployeeRoutes: FastifyPluginCallback = (app, options, done) => {
-  app.post('/registrar-funcionario', newEmployee);
-  app.post('/autenticar-funcionario', authEmployee);
-  app.get('/obter-todos-funcionarios', getEmployees);
-  app.post('/obter-funcionario-nome', getEmployeeByName);
-  app.post('/deletar-funcionario', deleteEmployeeById);
+  app.post('/registrar-funcionario', {
+    schema: {
+      tags: ['Funcionários'],
+    },
+    handler: newEmployee,
+  });
+  app.post('/autenticar-funcionario', {
+    schema: {
+      tags: ['Funcionários'],
+    },
+    handler: authEmployee,
+  });
+  app.get('/obter-todos-funcionarios', {
+    schema: {
+      tags: ['Funcionários'],
+    },
+    handler: getEmployees,
+  });
+  app.post('/obter-funcionario-nome', {
+    schema: {
+      tags: ['Funcionários'],
+    },
+    handler: getEmployeeByName,
+  });
+  app.post('/deletar-funcionario', {
+    schema: {
+      tags: ['Funcionários'],
+    },
+    handler: deleteEmployeeById,
+  });
 
   done();
 };

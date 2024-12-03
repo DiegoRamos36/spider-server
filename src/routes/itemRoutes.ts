@@ -8,10 +8,35 @@ import {
 } from '../controllers/itemController';
 
 export const ItemRoutes: FastifyPluginCallback = (app, options, done) => {
-  app.post('/novo-item', newItem);
-  app.get('/obter-item', getAllItems);
-  app.post('/obter-item-name', getItemByName);
-  app.post('/delete-item', deleteItemById);
-  app.post('/edit-item', editItemById);
+  app.post('/novo-item', {
+    schema: {
+      tags: ['Item'],
+    },
+    handler: newItem,
+  });
+  app.get('/obter-item', {
+    schema: {
+      tags: ['Item'],
+    },
+    handler: getAllItems,
+  });
+  app.post('/obter-item-name', {
+    schema: {
+      tags: ['Item'],
+    },
+    handler: getItemByName,
+  });
+  app.post('/delete-item', {
+    schema: {
+      tags: ['Item'],
+    },
+    handler: deleteItemById,
+  });
+  app.post('/edit-item', {
+    schema: {
+      tags: ['Endereços'],
+    },
+    handler: editItemById,
+  });
   done();
 };
