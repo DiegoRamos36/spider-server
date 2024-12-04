@@ -48,7 +48,7 @@ export const newAddress = async (req: FastifyRequest, res: FastifyReply) => {
 };
 
 export const getAddress = async (req: FastifyRequest, res: FastifyReply) => {
-  const { userId } = req.body as Partial<Adress>;
+  const { userId } = req.body as { userId: number };
   if (!userId)
     return res.status(400).send({ error: 'userId deve ser fornecido' });
 
@@ -65,7 +65,7 @@ export const getDefaultAddress = async (
   req: FastifyRequest,
   res: FastifyReply,
 ) => {
-  const { userId } = req.body as Partial<Adress>;
+  const { userId } = req.body as { userId: number };
 
   if (!userId) return res.status(400).send({ error: 'UserId não definido.' });
 
@@ -116,7 +116,7 @@ export const setDefaultAddress = async (
 };
 
 export const removeAddress = async (req: FastifyRequest, res: FastifyReply) => {
-  const { id } = req.body as Partial<Adress>;
+  const { id } = req.body as { id: number };
 
   if (!id) return res.send(400).send({ error: 'Id inválido!' });
 

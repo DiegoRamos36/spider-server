@@ -81,7 +81,7 @@ export const createPayment = async (req: FastifyRequest, res: FastifyReply) => {
 };
 
 export const getUserOrders = async (req: FastifyRequest, res: FastifyReply) => {
-  const { userId } = req.body as Partial<Pedido>;
+  const { userId } = req.body as { userId: number };
   if (!userId) {
     return res.status(400).send({ error: 'userId é necessário' });
   }
