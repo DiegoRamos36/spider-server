@@ -7,17 +7,11 @@ import {
   setDefaultAddress,
 } from '../controllers/addressController';
 
-// nome: data.nome,
-// address: data.address,
-// bairro: data.bairro || '',
-// numero: data.numero || '',
-// reference: data.reference || '',
-// userId: data.userId,
-
 export const addressRoutes: FastifyPluginCallback = (app, options, done) => {
   app.post('/new-address', {
     schema: {
       tags: ['Endereços'],
+      summary: 'Criação de endereços vinculados a usuários.',
       body: {
         type: 'object',
         required: [
@@ -43,6 +37,7 @@ export const addressRoutes: FastifyPluginCallback = (app, options, done) => {
   app.post('/get-address', {
     schema: {
       tags: ['Endereços'],
+      summary: 'Receber todos os endereços de um usuário.',
       body: {
         type: 'object',
         required: ['userId'],
@@ -56,6 +51,7 @@ export const addressRoutes: FastifyPluginCallback = (app, options, done) => {
   app.post('/remove-address', {
     schema: {
       tags: ['Endereços'],
+      summary: 'Deletar endereço de determinado usuário.',
       body: {
         type: 'object',
         required: ['id'],
@@ -69,6 +65,7 @@ export const addressRoutes: FastifyPluginCallback = (app, options, done) => {
   app.post('/get-default-address', {
     schema: {
       tags: ['Endereços'],
+      summary: 'Receber o endereço padrão de envio de um usuário.',
       body: {
         type: 'object',
         required: ['userId'],
@@ -82,6 +79,7 @@ export const addressRoutes: FastifyPluginCallback = (app, options, done) => {
   app.post('/set-default-address', {
     schema: {
       tags: ['Endereços'],
+      summary: 'Definir endereço padrão do usuário.',
       body: {
         type: 'object',
         required: ['userId', 'enderecoId'],

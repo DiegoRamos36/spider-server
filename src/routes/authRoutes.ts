@@ -9,6 +9,7 @@ export const authRoutes: FastifyPluginCallback = (app, options, done) => {
   app.post('/register', {
     schema: {
       tags: ['Usuários'],
+      summary: 'Registro de usuários.',
       body: {
         type: 'object',
         required: ['email', 'username', 'password'],
@@ -24,6 +25,7 @@ export const authRoutes: FastifyPluginCallback = (app, options, done) => {
   app.post('/login', {
     schema: {
       tags: ['Usuários'],
+      summary: 'Autenticação de usuários.',
       body: {
         type: 'object',
         required: ['email', 'password'],
@@ -39,6 +41,7 @@ export const authRoutes: FastifyPluginCallback = (app, options, done) => {
   app.post('/google-login', {
     schema: {
       tags: ['Usuários'],
+      summary: 'Autenticação de usuários com Google API',
       body: {
         type: 'object',
         required: ['email'],

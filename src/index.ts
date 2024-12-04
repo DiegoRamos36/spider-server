@@ -22,7 +22,7 @@ app.register(swagger, {
     info: {
       title: 'Spider API',
       description:
-        'Esta API fornece um conjunto de endpoints para gerenciar um e-commerce. Ela permite a manipulação de todo o ecossistema do Spider. Além disso, oferece suporte para integração com sistemas de pagamento e relatórios detalhados.',
+        'A API do Spider Burguer fornece um conjunto completo de endpoints projetados para gerenciar o ecossistema da hamburgueria. Ela permite a manipulação de diversas entidades essenciais para o funcionamento da operação, incluindo usuários, pedidos, endereços, cupons de desconto e funcionários. A API foi projetada para oferecer uma experiência fluida tanto para a administração quanto para os clientes, com funcionalidades que vão desde o gerenciamento de produtos até o controle de promoções e o cadastro de clientes. ',
       version: '1.0.0',
     },
     tags: [
@@ -52,7 +52,6 @@ app.register(swaggerUi, {
   routePrefix: '/docs',
   uiConfig: {
     displayOperationId: false,
-    docExpansion: 'none',
     displayRequestDuration: true,
   },
 });

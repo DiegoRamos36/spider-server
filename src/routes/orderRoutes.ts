@@ -11,6 +11,7 @@ export const orderRoutes: FastifyPluginCallback = (app, options, done) => {
   app.post('/create-checkout-session', {
     schema: {
       tags: ['Pedidos'],
+      summary: 'Criar pagamentos',
       body: {
         type: 'object',
         required: ['products', 'coupon', 'userId'],
@@ -40,6 +41,7 @@ export const orderRoutes: FastifyPluginCallback = (app, options, done) => {
   app.post('/pedidos', {
     schema: {
       tags: ['Pedidos'],
+      summary: 'Obter pedidos de determinado usuário.',
       body: {
         type: 'object',
         required: ['userId'],
@@ -53,6 +55,7 @@ export const orderRoutes: FastifyPluginCallback = (app, options, done) => {
   app.post('/delivery', {
     schema: {
       tags: ['Pedidos'],
+      summary: 'Obter pedidos do dia.',
       body: {
         type: 'object',
         required: ['date'],
@@ -67,12 +70,15 @@ export const orderRoutes: FastifyPluginCallback = (app, options, done) => {
   app.get('/pedidos', {
     schema: {
       tags: ['Pedidos'],
+      summary: 'Obter todos os pedidos.',
     },
     handler: getAllOrders,
   });
   app.post('/payment-status', {
     schema: {
       tags: ['Pedidos'],
+      description: 'Se foi aprovado ou não',
+      summary: 'Obter o status de algum pagamento.',
       body: {
         type: 'object',
         required: ['id', 'status'],

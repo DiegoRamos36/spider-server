@@ -7,16 +7,11 @@ import {
   newItem,
 } from '../controllers/itemController';
 
-// name: data.name,
-// desc: data.desc || undefined,
-// price: data.price,
-// imgSrc: data.imgSrc,
-// imgAlt: data.imgAlt,
-
 export const ItemRoutes: FastifyPluginCallback = (app, options, done) => {
   app.post('/novo-item', {
     schema: {
       tags: ['Item'],
+      summary: 'Criar novo item.',
       body: {
         type: 'object',
         required: ['name', 'price', 'imgSrc', 'desc', 'imgAlt'],
@@ -34,12 +29,14 @@ export const ItemRoutes: FastifyPluginCallback = (app, options, done) => {
   app.get('/obter-item', {
     schema: {
       tags: ['Item'],
+      summary: 'Obter todos os itens.',
     },
     handler: getAllItems,
   });
   app.post('/obter-item-name', {
     schema: {
       tags: ['Item'],
+      summary: 'Obter item pelo nome.',
       body: {
         type: 'object',
         required: ['name'],
@@ -51,9 +48,10 @@ export const ItemRoutes: FastifyPluginCallback = (app, options, done) => {
     handler: getItemByName,
   });
 
-  app.post('/delete-item', {
+  app.delete('/delete-item', {
     schema: {
       tags: ['Item'],
+      summary: 'Deletar item por ID',
       body: {
         type: 'object',
         required: ['id'],
@@ -64,9 +62,10 @@ export const ItemRoutes: FastifyPluginCallback = (app, options, done) => {
     },
     handler: deleteItemById,
   });
-  app.post('/edit-item', {
+  app.put('/edit-item', {
     schema: {
       tags: ['Item'],
+      summary: 'Deletar item por ID.',
       body: {
         type: 'object',
         required: ['name', 'price', 'desc'],

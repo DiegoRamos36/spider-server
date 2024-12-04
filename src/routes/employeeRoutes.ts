@@ -17,6 +17,7 @@ export const EmployeeRoutes: FastifyPluginCallback = (app, options, done) => {
   app.post('/registrar-funcionario', {
     schema: {
       tags: ['Funcionários'],
+      summary: 'Criação de um funcionário.',
       body: {
         type: 'object',
         required: ['nome', 'username', 'password', 'cargo', 'endereco'],
@@ -34,6 +35,7 @@ export const EmployeeRoutes: FastifyPluginCallback = (app, options, done) => {
   app.post('/autenticar-funcionario', {
     schema: {
       tags: ['Funcionários'],
+      summary: 'Autenticação de funcionário via usuário e senha.',
       body: {
         type: 'object',
         required: ['username', 'password'],
@@ -48,12 +50,14 @@ export const EmployeeRoutes: FastifyPluginCallback = (app, options, done) => {
   app.get('/obter-todos-funcionarios', {
     schema: {
       tags: ['Funcionários'],
+      summary: 'Obter uma lista com todos os funcionários.',
     },
     handler: getEmployees,
   });
   app.post('/obter-funcionario-nome', {
     schema: {
       tags: ['Funcionários'],
+      summary: 'Obter os dados de um funcionário específico.',
       body: {
         type: 'object',
         required: ['nome'],
@@ -67,6 +71,7 @@ export const EmployeeRoutes: FastifyPluginCallback = (app, options, done) => {
   app.post('/deletar-funcionario', {
     schema: {
       tags: ['Funcionários'],
+      summary: 'Remover um funcionário.',
       body: {
         type: 'object',
         required: ['id'],
