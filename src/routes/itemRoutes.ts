@@ -65,7 +65,7 @@ export const ItemRoutes: FastifyPluginCallback = (app, options, done) => {
   app.put('/edit-item', {
     schema: {
       tags: ['Item'],
-      summary: 'Deletar item por ID.',
+      summary: 'Editar item por ID.',
       body: {
         type: 'object',
         required: ['name', 'price', 'desc', 'id'],
