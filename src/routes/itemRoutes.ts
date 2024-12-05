@@ -68,8 +68,9 @@ export const ItemRoutes: FastifyPluginCallback = (app, options, done) => {
       summary: 'Deletar item por ID.',
       body: {
         type: 'object',
-        required: ['name', 'price', 'desc'],
+        required: ['name', 'price', 'desc', 'id'],
         properties: {
+          id: { type: 'string' },
           name: { type: 'string' },
           price: { type: 'number' },
           desc: { type: 'string' },

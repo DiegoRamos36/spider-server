@@ -63,8 +63,8 @@ export const deleteItemById = async (
 
 // editar item
 export const editItemById = async (req: FastifyRequest, res: FastifyReply) => {
-  const { id } = req.params as { id: string };
-  const { name, desc, price } = req.body as {
+  const { id, name, desc, price } = req.body as {
+    id: string;
     name: string;
     desc: string;
     price: number;
