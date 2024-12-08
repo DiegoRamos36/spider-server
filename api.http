@@ -1,4 +1,11 @@
-GET http://localhost:4000/obter-item
+PUT https://spider-server-m6m6.onrender.com/edit-item
+Content-Type: application/json
 
+{
+  "id": "1",
+  "name": "Spider Burguer",
+  "price": 10,
+  "desc": "4 carnes, 4 queijos, 2 alface, 2 tomate, 2 pickles, molho"
+}
 
 

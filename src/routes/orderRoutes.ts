@@ -60,7 +60,7 @@ export const orderRoutes: FastifyPluginCallback = (app, options, done) => {
         type: 'object',
         required: ['date'],
         properties: {
-          userId: { type: 'string', format: 'date-time' },
+          date: { type: 'string', format: 'date-time' },
         },
       },
     },
