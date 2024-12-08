@@ -150,10 +150,14 @@ export const setPaymentStatus = async (
 
 export const getOrders = async (req: FastifyRequest, res: FastifyReply) => {
   const { date } = req.body as { date: string };
-
+  const startOfDay = new Date(`${date}T00:00:00.000Z`);
+  const endOfDay = new Date(`${date}T23:59:59.999Z`);
   const pedidos = await prisma.pedido.findMany({
     where: {
-      createdAt: date,
+      createdAt: {
+        gte: startOfDay,
+        lte: endOfDay,
+      },
     },
     include: {
       produtos: {

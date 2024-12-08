@@ -1,11 +1,8 @@
-PUT https://spider-server-m6m6.onrender.com/edit-item
+POST https://spider-server-m6m6.onrender.com/delivery
 Content-Type: application/json
 
 {
-  "id": "1",
-  "name": "Spider Burguer",
-  "price": 10,
-  "desc": "4 carnes, 4 queijos, 2 alface, 2 tomate, 2 pickles, molho"
+  "date": "2024-12-07T00:00:00.000Z"
 }
 
 
